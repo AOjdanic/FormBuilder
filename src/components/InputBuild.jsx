@@ -15,7 +15,11 @@ function InputBuild() {
 
     console.log(formElements);
 
-    if (selectValue === "checkbox" || selectValue === "radio") {
+    if (
+      selectValue === "checkbox" ||
+      selectValue === "radio" ||
+      selectValue === "select"
+    ) {
       const nonRadios = formElements.filter((el) => !el.id.startsWith("radio"));
       console.log(nonRadios);
       const radios = formElements.filter((el) => el.id.startsWith("radio"));
@@ -82,6 +86,8 @@ function InputBuild() {
           <option value="url">url</option>
           <option value="reset">reset</option>
           <option value="submit">submit</option>
+          <option value="textarea">textarea</option>
+          <option value="select">select</option>
         </select>
       </label>
 
@@ -104,7 +110,9 @@ function InputBuild() {
         </label>
       )}
 
-      {selectValue !== "radio" &&
+      {selectValue !== "select" &&
+        selectValue !== "color" &&
+        selectValue !== "radio" &&
         selectValue !== "checkbox" &&
         selectValue !== "range" &&
         selectValue !== "file" &&
@@ -171,7 +179,9 @@ function InputBuild() {
         </label>
       )}
 
-      {(selectValue === "radio" || selectValue === "checkbox") && (
+      {(selectValue === "radio" ||
+        selectValue === "checkbox" ||
+        selectValue === "select") && (
         <label
           className=" flex justify-between items-center"
           htmlFor="noOfBoxes"
@@ -206,7 +216,9 @@ function InputBuild() {
         </label>
       )}
 
-      {(selectValue === "radio" || selectValue === "checkbox") &&
+      {(selectValue === "radio" ||
+        selectValue === "checkbox" ||
+        selectValue === "select") &&
         radioArr.map((el, i) => (
           <label
             key={i}
@@ -232,7 +244,7 @@ function InputBuild() {
 export default InputBuild;
 
 {
-  /* <textarea name="" id="" cols="30" rows="10"></textarea>
+  /* 
         <select name="" id="">
         <option value=""></option>
       </select> */
