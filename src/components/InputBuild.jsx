@@ -21,20 +21,21 @@ function InputBuild() {
       const radios = formElements.filter((el) => el.id.startsWith("radio"));
       console.log(radios);
 
-      radios.forEach((el) => {
-        let newObj = {};
+      let newObj = {};
 
-        nonRadios.forEach((el) => {
-          if (el.id === "noOfBoxes") return;
-          if (el.id === "required") {
-            return (newObj[el.id] = { required: el.checked });
-          }
-          newObj[el.id] = el.value;
-        });
-        newObj.id = el.value;
-        console.log(newObj);
-        setFormFields((prev) => [...prev, newObj]);
+      nonRadios.forEach((el) => {
+        if (el.id === "noOfBoxes") return;
+        if (el.id === "required") {
+          return (newObj[el.id] = { required: el.checked });
+        }
+        newObj[el.id] = el.value;
       });
+      newObj.radios = [];
+      radios.forEach((el) => {
+        newObj.radios.push(el.value);
+        console.log(newObj);
+      });
+      setFormFields((prev) => [...prev, newObj]);
       return;
     }
 
@@ -153,6 +154,21 @@ function InputBuild() {
             />
           </label>
         </>
+      )}
+
+      {(selectValue === "radio" || selectValue === "checkbox") && (
+        <label
+          className=" flex justify-between items-center"
+          htmlFor="question"
+        >
+          Question:
+          <input
+            required
+            type="text"
+            id="question"
+            placeholder="enter question"
+          />
+        </label>
       )}
 
       {(selectValue === "radio" || selectValue === "checkbox") && (
