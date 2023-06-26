@@ -51,6 +51,97 @@ function FormOptions() {
 
       <label
         className="flex justify-between items-center"
+        htmlFor="formFontSize"
+      >
+        Form font size (in rem):
+        <input
+          onChange={(e) =>
+            setFormOptions((prev) => {
+              return { ...prev, fontSize: e.target.value + "rem" };
+            })
+          }
+          type="number"
+          name="formFontSize"
+          id="formFontSize"
+        />
+      </label>
+
+      <label className="flex justify-between items-center">
+        Form font weight:
+        <span>
+          300
+          <input
+            onChange={(e) =>
+              setFormOptions((prev) => {
+                return { ...prev, fontWeight: e.target.value };
+              })
+            }
+            type="radio"
+            name="formFontWeight"
+            id="formFontWeight"
+            value={"300"}
+          />
+        </span>
+        <span>
+          400
+          <input
+            onChange={(e) =>
+              setFormOptions((prev) => {
+                return { ...prev, fontWeight: e.target.value };
+              })
+            }
+            type="radio"
+            name="formFontWeight"
+            id="formFontWeight"
+            value={"400"}
+          />
+        </span>
+        <span>
+          500
+          <input
+            onChange={(e) =>
+              setFormOptions((prev) => {
+                return { ...prev, fontWeight: e.target.value };
+              })
+            }
+            type="radio"
+            name="formFontWeight"
+            id="formFontWeight"
+            value={"500"}
+          />
+        </span>
+        <span>
+          600
+          <input
+            onChange={(e) =>
+              setFormOptions((prev) => {
+                return { ...prev, fontWeight: e.target.value };
+              })
+            }
+            type="radio"
+            name="formFontWeight"
+            id="formFontWeight"
+            value={"600"}
+          />
+        </span>
+        <span>
+          700
+          <input
+            onChange={(e) =>
+              setFormOptions((prev) => {
+                return { ...prev, fontWeight: e.target.value };
+              })
+            }
+            type="radio"
+            name="formFontWeight"
+            id="formFontWeight"
+            value={"700"}
+          />
+        </span>
+      </label>
+
+      <label
+        className="flex justify-between items-center"
         htmlFor="formBorderRadius"
       >
         Form border radius (in rem):
@@ -202,7 +293,7 @@ function FormOptions() {
             })
           }
           type="color"
-          name="FormBoxShadowColor"
+          name="FormBoxShadow"
           id="FormBoxShadowColor"
         />
       </label>

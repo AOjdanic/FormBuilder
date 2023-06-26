@@ -13,6 +13,8 @@ export const FormContextProvider = ({ children }) => {
     padding: "3rem",
     boxShadow: "0 0 10px 5px #fff",
     title: "Form Title",
+    fontSize: "2.25rem",
+    fontWeight: "700",
   });
 
   const fields = {
