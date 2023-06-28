@@ -30,11 +30,11 @@ function InputComponent({
     return (
       <article style={elementOptions} className=" flex flex-col gap-4">
         <p style={labelOptions}>{question}</p>
-        <div className="flex justify-between flex-wrap">
+        <div className="flex flex-wrap justify-between">
           {radios.map((el) => (
             <label
               style={labelOptions}
-              className="flex items-center justify-end gap-2 mb-4 basis-1/5"
+              className="mb-4 flex basis-1/5 items-center justify-end gap-2"
               key={el}
             >
               {el}
@@ -61,7 +61,7 @@ function InputComponent({
         </label>
         <textarea
           style={inputOptions}
-          className="outline-none rounded-lg"
+          className="rounded-lg outline-none"
           id={id}
           placeholder={placeholder}
           name={label}

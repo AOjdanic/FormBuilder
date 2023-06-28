@@ -9,8 +9,8 @@ function FormOptions() {
     setInputOptions,
   } = useContext(FormContext);
   return (
-    <form className="mx-auto text-orange-700 font-bold flex flex-col gap-5 w-96 p-4">
-      <label className="flex justify-between items-center" htmlFor="formTitle">
+    <form className="mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-orange-700">
+      <label className="flex items-center justify-between" htmlFor="formTitle">
         Form title:
         <input
           onChange={(e) =>
@@ -24,7 +24,7 @@ function FormOptions() {
         />
       </label>
 
-      <label className="flex justify-between items-center" htmlFor="formColor">
+      <label className="flex items-center justify-between" htmlFor="formColor">
         Form background color:
         <input
           onChange={(e) =>
@@ -38,7 +38,7 @@ function FormOptions() {
         />
       </label>
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="formTextColor"
       >
         Form text color:
@@ -55,7 +55,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="formFontSize"
       >
         Form font size (in rem):
@@ -71,7 +71,7 @@ function FormOptions() {
         />
       </label>
 
-      <label className="flex justify-between items-center">
+      <label className="flex items-center justify-between">
         Form font weight:
         <span>
           300
@@ -146,7 +146,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="formBorderRadius"
       >
         Form border radius (in rem):
@@ -163,7 +163,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="formMaxWidth"
       >
         Form max width (in rem):
@@ -179,7 +179,7 @@ function FormOptions() {
         />
       </label>
       {/* paddings */}
-      <label className="flex justify-between items-center">
+      <label className="flex items-center justify-between">
         Form padding (in rem):
         <div className="flex max-w-[212px] gap-4">
           <input
@@ -255,7 +255,7 @@ function FormOptions() {
       {/* box shadow generator */}
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="formBoxShadow"
       >
         Form box shadow (in px):
@@ -336,7 +336,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="FormBoxShadowColor"
       >
         Form box shadow color:
@@ -361,7 +361,7 @@ function FormOptions() {
 
       {/* article paddings */}
 
-      <label className="flex justify-between items-center">
+      <label className="flex items-center justify-between">
         Element padding (in rem):
         <div className="flex max-w-[212px] gap-4">
           <input
@@ -436,7 +436,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="labelFontSize"
       >
         Label font size (in rem):
@@ -452,7 +452,7 @@ function FormOptions() {
         />
       </label>
 
-      <label className="flex justify-between items-center">
+      <label className="flex items-center justify-between">
         Label font weight:
         <span>
           300
@@ -529,7 +529,7 @@ function FormOptions() {
       {/* set input options */}
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="inputBackgroundColor"
       >
         Input background color:
@@ -546,7 +546,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="inputTextColor"
       >
         Input text color:
@@ -562,7 +562,7 @@ function FormOptions() {
         />
       </label>
 
-      <label className="flex justify-between items-center">
+      <label className="flex items-center justify-between">
         Input padding (in rem):
         <div className="flex max-w-[212px] gap-4">
           <input
@@ -637,7 +637,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="inputFontSize"
       >
         Input font size (in rem):
@@ -654,7 +654,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="inputBorderRadius"
       >
         Input border radius (in rem):
@@ -671,7 +671,7 @@ function FormOptions() {
       </label>
 
       <label
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         htmlFor="accentColor"
       >
         Accent color:

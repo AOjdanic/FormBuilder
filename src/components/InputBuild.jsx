@@ -58,9 +58,9 @@ function InputBuild() {
   return (
     <form
       onSubmit={createFormElement}
-      className=" mx-auto text-orange-700 font-bold flex flex-col gap-5 w-96 p-4"
+      className=" mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-orange-700"
     >
-      <label className="flex justify-between items-center" htmlFor="type">
+      <label className="flex items-center justify-between" htmlFor="type">
         For:
         <select
           className="w-[212px]"
@@ -92,14 +92,14 @@ function InputBuild() {
       </label>
 
       {selectValue !== "radio" && selectValue !== "checkbox" && (
-        <label className=" flex justify-between items-center" htmlFor="id">
+        <label className=" flex items-center justify-between" htmlFor="id">
           Id:
           <input required type="text" id="id" placeholder="enter id here" />
         </label>
       )}
 
       {selectValue !== "reset" && selectValue !== "submit" && (
-        <label className=" flex justify-between items-center" htmlFor="label">
+        <label className=" flex items-center justify-between" htmlFor="label">
           Title:
           <input
             required
@@ -119,7 +119,7 @@ function InputBuild() {
         selectValue !== "reset" &&
         selectValue !== "submit" && (
           <label
-            className=" flex justify-between items-center"
+            className=" flex items-center justify-between"
             htmlFor="placeholder"
           >
             Placeholder:
@@ -133,7 +133,7 @@ function InputBuild() {
 
       {selectValue === "range" && (
         <>
-          <label className=" flex justify-between items-center" htmlFor="min">
+          <label className=" flex items-center justify-between" htmlFor="min">
             Minimum:
             <input
               required
@@ -142,7 +142,7 @@ function InputBuild() {
               placeholder="enter minimum value"
             />
           </label>
-          <label className=" flex justify-between items-center" htmlFor="max">
+          <label className=" flex items-center justify-between" htmlFor="max">
             Maximum:
             <input
               required
@@ -152,7 +152,7 @@ function InputBuild() {
             />
           </label>
 
-          <label className=" flex justify-between items-center" htmlFor="step">
+          <label className=" flex items-center justify-between" htmlFor="step">
             Step:
             <input
               required
@@ -166,7 +166,7 @@ function InputBuild() {
 
       {(selectValue === "radio" || selectValue === "checkbox") && (
         <label
-          className=" flex justify-between items-center"
+          className=" flex items-center justify-between"
           htmlFor="question"
         >
           Question:
@@ -183,7 +183,7 @@ function InputBuild() {
         selectValue === "checkbox" ||
         selectValue === "select") && (
         <label
-          className=" flex justify-between items-center"
+          className=" flex items-center justify-between"
           htmlFor="noOfBoxes"
         >
           Number of fields:
@@ -204,14 +204,14 @@ function InputBuild() {
       {selectValue !== "reset" && selectValue !== "submit" && (
         <label
           htmlFor="required"
-          className=" flex justify-between items-center"
+          className=" flex items-center justify-between"
         >
           Required: &nbsp;
           <input
             type="checkbox"
             name="required"
             id="required"
-            className="accent-orange-700 h-6 w-6"
+            className="h-6 w-6 accent-orange-700"
           />
         </label>
       )}
@@ -222,7 +222,7 @@ function InputBuild() {
         radioArr.map((el, i) => (
           <label
             key={i}
-            className=" flex justify-between items-center"
+            className=" flex items-center justify-between"
             htmlFor={`radio${i}`}
           >
             Value {i + 1}:
@@ -234,7 +234,7 @@ function InputBuild() {
             />
           </label>
         ))}
-      <button className="bg-orange-700 text-slate-900 text-xl py-2 px-10 font-extrabold ">
+      <button className="bg-orange-700 px-10 py-2 text-xl font-extrabold text-slate-900 ">
         Create
       </button>
     </form>
