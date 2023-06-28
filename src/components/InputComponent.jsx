@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import FormContext from "../context/form-context";
+
 /* eslint-disable react/prop-types */
 function InputComponent({
   props: {
@@ -13,19 +16,31 @@ function InputComponent({
     question,
   },
 }) {
+  let { elementOptions, labelOptions, inputOptions } = useContext(FormContext);
+
+  if (type === "color") {
+    inputOptions = { ...inputOptions, padding: "0 0 0 0" };
+  }
+
+  if (type === "range") {
+    inputOptions = { ...inputOptions, padding: "0.5rem 0 0.5rem 0" };
+  }
+
   if (type === "radio" || type === "checkbox") {
     return (
-      <article className="bg-slate-900 flex flex-col px-8 py-10 gap-4">
-        <p className="text-orange-700 text-xl font-semibold ">{question}</p>
+      <article style={elementOptions} className=" flex flex-col gap-4">
+        <p style={labelOptions}>{question}</p>
         <div className="flex justify-between flex-wrap">
           {radios.map((el) => (
             <label
-              className="text-orange-700 text-xl font-semibold flex items-center justify-end gap-2 mb-4 basis-1/5"
+              style={labelOptions}
+              className="flex items-center justify-end gap-2 mb-4 basis-1/5"
               key={el}
             >
               {el}
               <input
-                className={`bg-slate-50 py-2  h-6 w-6 cursor-pointer text-slate-900 text-2xl outline-none rounded-lg accent-orange-700`}
+                style={inputOptions}
+                className="h-6 w-6 cursor-pointer outline-none"
                 type={type}
                 id={el}
                 name={label}
@@ -40,12 +55,13 @@ function InputComponent({
 
   if (type === "textarea") {
     return (
-      <article className="bg-slate-900 flex flex-col px-8 py-10 gap-4">
-        <label className="text-orange-700 text-xl font-semibold " htmlFor={id}>
+      <article style={elementOptions} className=" flex flex-col gap-4">
+        <label style={labelOptions} htmlFor={id}>
           {label}
         </label>
         <textarea
-          className={`bg-slate-50 p-2  text-slate-900 text-2xl outline-none rounded-lg `}
+          style={inputOptions}
+          className="outline-none rounded-lg"
           id={id}
           placeholder={placeholder}
           name={label}
@@ -57,12 +73,11 @@ function InputComponent({
 
   if (type === "select") {
     return (
-      <article className="bg-slate-900 flex flex-col px-8 py-10 gap-4">
-        <p className="text-orange-700 text-xl font-semibold ">{label}</p>
+      <article style={elementOptions} className="flex flex-col gap-4">
+        <p style={labelOptions}>{label}</p>
         <select
-          className={`bg-slate-50 py-2   px-4
-            cursor-pointer
-           text-slate-900 text-2xl outline-none rounded-lg`}
+          style={inputOptions}
+          className="cursor-pointer outline-none"
           name={label}
           id={id}
         >
@@ -77,16 +92,15 @@ function InputComponent({
   }
 
   return (
-    <article className="bg-slate-900 flex flex-col px-8 py-10 gap-4">
-      <label className="text-orange-700 text-xl font-semibold " htmlFor={id}>
+    <article style={elementOptions} className="flex flex-col gap-4">
+      <label style={labelOptions} htmlFor={id}>
         {label}
       </label>
       <input
-        className={`bg-slate-50 ${type !== "color" ? "py-2" : ""} ${
-          type === "range" || type === "color" ? "" : "px-4"
-        }  ${
+        style={inputOptions}
+        className={`${
           type === "submit" || type === "reset" ? "cursor-pointer" : ""
-        } text-slate-900 text-2xl outline-none rounded-lg accent-orange-700`}
+        }  outline-none `}
         type={type}
         id={id}
         placeholder={placeholder}
