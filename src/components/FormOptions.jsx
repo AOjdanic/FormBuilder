@@ -1,5 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import FormContext from "../context/form-context";
+import BuildingBlock from "./BuildingBlock";
+import FontWeightBuildingBlock from "./FontWeightBuildingBlock";
+import PaddingBoxShadowBuildingBlock from "./PaddingBoxShadowBuildingBlock";
 
 function FormOptions() {
   const {
@@ -8,684 +11,236 @@ function FormOptions() {
     setLabelOptions,
     setInputOptions,
   } = useContext(FormContext);
+
+  const [showFormOptions, setShowFormOptions] = useState(true);
+  const [showInputOptions, setShowInputOptions] = useState(true);
+
+  const formOptionsProps = [
+    {
+      id: "formTitle",
+      fn: setFormOptions,
+      cssRule: "title",
+      type: "text",
+      label: "Form title",
+      units: "",
+    },
+    {
+      id: "formColor",
+      fn: setFormOptions,
+      cssRule: "backgroundColor",
+      type: "color",
+      label: "Form background color",
+      units: "",
+    },
+    {
+      id: "formTextColor",
+      fn: setFormOptions,
+      cssRule: "color",
+      type: "color",
+      label: "Form text color",
+      units: "",
+    },
+    {
+      id: "formFontSize",
+      fn: setFormOptions,
+      cssRule: "fontSize",
+      type: "number",
+      label: "Form font size (in rem)",
+      units: "rem",
+    },
+    {
+      id: "formFontWeight",
+      fn: setFormOptions,
+      name: "formFontWeight",
+      values: ["300", "400", "600", "700"],
+      label: "Form font weight",
+      isFontWeight: true,
+    },
+    {
+      id: "formMaxWidth",
+      fn: setFormOptions,
+      cssRule: "maxWidth",
+      type: "number",
+      label: "Form max width (in rem)",
+      units: "rem",
+    },
+    {
+      id: "formPadding",
+      fn: setFormOptions,
+      label: "Form padding (in rem)",
+      ids: [
+        "formPaddingTop",
+        "formPaddingRight",
+        "formPaddingBottom",
+        "formPaddingLeft",
+      ],
+      units: "rem",
+      cssRule: "padding",
+      isPBS: true,
+    },
+    {
+      id: "formBorderRadius",
+      fn: setFormOptions,
+      cssRule: "borderRadius",
+      type: "number",
+      label: "Form border radius (in rem)",
+      units: "rem",
+    },
+    {
+      id: "formBoxShadow",
+      fn: setFormOptions,
+      label: "Form box shadow (in px)",
+      ids: [
+        "formBoxShadowX",
+        "formBoxShadowY",
+        "formBoxShadowBlur",
+        "formBoxShadowSpread",
+        "formBoxShadowColor",
+      ],
+      units: "px",
+      cssRule: "boxShadow",
+      isPBS: true,
+    },
+  ];
+
+  const elementOptionsProps = [
+    {
+      id: "elementPadding",
+      fn: setElementOptions,
+      label: "Element padding (in rem)",
+      ids: [
+        "elementPaddingTop",
+        "elementPaddingRight",
+        "elementPaddingBottom",
+        "elementPaddingLeft",
+      ],
+      units: "rem",
+      cssRule: "padding",
+      isPBS: true,
+    },
+    {
+      id: "labelFontSize",
+      fn: setLabelOptions,
+      cssRule: "fontSize",
+      type: "number",
+      label: "Label font size (in rem)",
+      units: "rem",
+    },
+    {
+      id: "labelFontWeight",
+      fn: setLabelOptions,
+      name: "labelFontWeight",
+      values: ["300", "400", "600", "700"],
+      label: "Label font weight",
+      isFontWeight: true,
+    },
+    {
+      id: "inputFontSize",
+      fn: setInputOptions,
+      cssRule: "fontSize",
+      type: "number",
+      label: "Input font size (in rem)",
+      units: "rem",
+    },
+    {
+      id: "inputTextColor",
+      fn: setInputOptions,
+      cssRule: "color",
+      type: "color",
+      label: "Input text color",
+      units: "",
+    },
+    {
+      id: "inputBackgroundColor",
+      fn: setInputOptions,
+      cssRule: "backgroundColor",
+      type: "color",
+      label: "Input background color",
+      units: "",
+    },
+    {
+      id: "inputPadding",
+      fn: setInputOptions,
+      label: "Input padding (in rem)",
+      ids: [
+        "inputPaddingTop",
+        "inputPaddingRight",
+        "inputPaddingBottom",
+        "inputPaddingLeft",
+      ],
+      units: "rem",
+      cssRule: "padding",
+      isPBS: true,
+    },
+    {
+      id: "inputBorderRadius",
+      fn: setInputOptions,
+      cssRule: "borderRadius",
+      type: "number",
+      label: "Input border radius (in rem)",
+      units: "rem",
+    },
+    {
+      id: "inputAccentColor",
+      fn: setInputOptions,
+      cssRule: "accentColor",
+      type: "color",
+      label: "Accent color",
+      units: "",
+    },
+  ];
+
   return (
     <form className="mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-orange-700">
-      <label className="flex items-center justify-between" htmlFor="formTitle">
-        Form title:
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, title: e.target.value };
-            })
+      <div className="flex justify-between">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            return setShowFormOptions(!showFormOptions);
+          }}
+          className="rounded-lg bg-orange-700 p-2 text-slate-900"
+        >
+          {`${showFormOptions === true ? "Hide" : "Show"} form options`}
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            return setShowInputOptions(!showInputOptions);
+          }}
+          className="rounded-lg bg-orange-700 p-2 text-slate-900"
+        >
+          {`${showInputOptions === true ? "Hide" : "Show"} input options`}
+        </button>
+      </div>
+      {showFormOptions &&
+        formOptionsProps.map((propsObj) => {
+          if (propsObj.isFontWeight) {
+            return <FontWeightBuildingBlock key={propsObj.id} {...propsObj} />;
           }
-          type="text"
-          name="formTitle"
-          id="formTitle"
-        />
-      </label>
 
-      <label className="flex items-center justify-between" htmlFor="formColor">
-        Form background color:
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, backgroundColor: e.target.value };
-            })
+          if (propsObj.isPBS) {
+            return (
+              <PaddingBoxShadowBuildingBlock key={propsObj.id} {...propsObj} />
+            );
           }
-          type="color"
-          name="formColor"
-          id="formColor"
-        />
-      </label>
-      <label
-        className="flex items-center justify-between"
-        htmlFor="formTextColor"
-      >
-        Form text color:
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, color: e.target.value };
-            })
+
+          return <BuildingBlock key={propsObj.id} {...propsObj} />;
+        })}
+
+      {showInputOptions &&
+        elementOptionsProps.map((propsObj) => {
+          if (propsObj.isFontWeight) {
+            return <FontWeightBuildingBlock key={propsObj.id} {...propsObj} />;
           }
-          type="color"
-          name="formTextColor"
-          id="formTextColor"
-        />
-      </label>
 
-      <label
-        className="flex items-center justify-between"
-        htmlFor="formFontSize"
-      >
-        Form font size (in rem):
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, fontSize: e.target.value + "rem" };
-            })
+          if (propsObj.isPBS) {
+            return (
+              <PaddingBoxShadowBuildingBlock key={propsObj.id} {...propsObj} />
+            );
           }
-          type="number"
-          name="formFontSize"
-          id="formFontSize"
-        />
-      </label>
 
-      <label className="flex items-center justify-between">
-        Form font weight:
-        <span>
-          300
-          <input
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="formFontWeight"
-            id="formFontWeight300"
-            value={"300"}
-          />
-        </span>
-        <span>
-          400
-          <input
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="formFontWeight"
-            id="formFontWeight400"
-            value={"400"}
-          />
-        </span>
-        <span>
-          500
-          <input
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="formFontWeight"
-            id="formFontWeight500"
-            value={"500"}
-          />
-        </span>
-        <span>
-          600
-          <input
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="formFontWeight"
-            id="formFontWeight600"
-            value={"600"}
-          />
-        </span>
-        <span>
-          700
-          <input
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="formFontWeight"
-            id="formFontWeight700"
-            value={"700"}
-          />
-        </span>
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="formBorderRadius"
-      >
-        Form border radius (in rem):
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, borderRadius: e.target.value + "rem" };
-            })
-          }
-          type="number"
-          name="formBorderRadius"
-          id="formBorderRadius"
-        />
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="formMaxWidth"
-      >
-        Form max width (in rem):
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              return { ...prev, maxWidth: e.target.value + "rem" };
-            })
-          }
-          type="number"
-          name="formMaxWidth"
-          id="formMaxWidth"
-        />
-      </label>
-      {/* paddings */}
-      <label className="flex items-center justify-between">
-        Form padding (in rem):
-        <div className="flex max-w-[212px] gap-4">
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(0, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="formPaddingTop"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(1, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="formPaddingRight"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(2, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="formPaddingBottom"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(3, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="formPaddingLeft"
-          />
-        </div>
-      </label>
-      {/* box shadow generator */}
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="formBoxShadow"
-      >
-        Form box shadow (in px):
-        <div className="flex max-w-[212px] gap-4">
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.boxShadow.split(" ");
-
-                values.splice(0, 1, e.target.value + "px");
-
-                return {
-                  ...prev,
-                  boxShadow: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            name="formBoxShadow"
-            id="formBoxShadowX"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.boxShadow.split(" ");
-
-                values.splice(1, 1, e.target.value + "px");
-
-                return {
-                  ...prev,
-                  boxShadow: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            name="formBoxShadow"
-            id="formBoxShadowY"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.boxShadow.split(" ");
-
-                values.splice(2, 1, e.target.value + "px");
-
-                return {
-                  ...prev,
-                  boxShadow: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            name="formBoxShadow"
-            id="formBoxShadowBlur"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setFormOptions((prev) => {
-                const values = prev.boxShadow.split(" ");
-
-                values.splice(3, 1, e.target.value + "px");
-
-                return {
-                  ...prev,
-                  boxShadow: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            name="formBoxShadow"
-            id="formBoxShadowSpread"
-          />
-        </div>
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="FormBoxShadowColor"
-      >
-        Form box shadow color:
-        <input
-          onChange={(e) =>
-            setFormOptions((prev) => {
-              const values = prev.boxShadow.split(" ");
-
-              values.splice(4, 1, e.target.value);
-
-              return {
-                ...prev,
-                boxShadow: values.join(" "),
-              };
-            })
-          }
-          type="color"
-          name="FormBoxShadow"
-          id="FormBoxShadowColor"
-        />
-      </label>
-
-      {/* article paddings */}
-
-      <label className="flex items-center justify-between">
-        Element padding (in rem):
-        <div className="flex max-w-[212px] gap-4">
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setElementOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(0, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="elementPaddingTop"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setElementOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(1, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="elementPaddingRight"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setElementOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(2, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="elementPaddingBottom"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setElementOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(3, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="elementPaddingLeft"
-          />
-        </div>
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="labelFontSize"
-      >
-        Label font size (in rem):
-        <input
-          onChange={(e) =>
-            setLabelOptions((prev) => {
-              return { ...prev, fontSize: e.target.value + "rem" };
-            })
-          }
-          type="number"
-          name="labelFontSize"
-          id="labelFontSize"
-        />
-      </label>
-
-      <label className="flex items-center justify-between">
-        Label font weight:
-        <span>
-          300
-          <input
-            onChange={(e) =>
-              setLabelOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="labelFontWeight"
-            id="labelFontWeight300"
-            value={"300"}
-          />
-        </span>
-        <span>
-          400
-          <input
-            onChange={(e) =>
-              setLabelOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="labelFontWeight"
-            id="labelFontWeight400"
-            value={"400"}
-          />
-        </span>
-        <span>
-          500
-          <input
-            onChange={(e) =>
-              setLabelOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="labelFontWeight"
-            id="labelFontWeight500"
-            value={"500"}
-          />
-        </span>
-        <span>
-          600
-          <input
-            onChange={(e) =>
-              setLabelOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="labelFontWeight"
-            id="labelFontWeight600"
-            value={"600"}
-          />
-        </span>
-        <span>
-          700
-          <input
-            onChange={(e) =>
-              setLabelOptions((prev) => {
-                return { ...prev, fontWeight: e.target.value };
-              })
-            }
-            type="radio"
-            name="labelFontWeight"
-            id="labelFontWeight700"
-            value={"700"}
-          />
-        </span>
-      </label>
-
-      {/* set input options */}
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="inputBackgroundColor"
-      >
-        Input background color:
-        <input
-          onChange={(e) =>
-            setInputOptions((prev) => {
-              return { ...prev, backgroundColor: e.target.value };
-            })
-          }
-          type="color"
-          name="inputBackgroundColor"
-          id="inputBackgroundColor"
-        />
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="inputTextColor"
-      >
-        Input text color:
-        <input
-          onChange={(e) =>
-            setInputOptions((prev) => {
-              return { ...prev, color: e.target.value };
-            })
-          }
-          type="color"
-          name="inputTextColor"
-          id="inputTextColor"
-        />
-      </label>
-
-      <label className="flex items-center justify-between">
-        Input padding (in rem):
-        <div className="flex max-w-[212px] gap-4">
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setInputOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(0, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="inputPaddingTop"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setInputOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(1, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="inputPaddingRight"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setInputOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(2, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="inputPaddingBottom"
-          />
-          <input
-            className="max-w-[40px]"
-            onChange={(e) =>
-              setInputOptions((prev) => {
-                const values = prev.padding.split(" ");
-
-                values.splice(3, 1, e.target.value + "rem");
-
-                return {
-                  ...prev,
-                  padding: values.join(" "),
-                };
-              })
-            }
-            type="number"
-            id="inputPaddingLeft"
-          />
-        </div>
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="inputFontSize"
-      >
-        Input font size (in rem):
-        <input
-          onChange={(e) =>
-            setInputOptions((prev) => {
-              return { ...prev, fontSize: e.target.value + "rem" };
-            })
-          }
-          type="number"
-          name="inputFontSize"
-          id="inputFontSize"
-        />
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="inputBorderRadius"
-      >
-        Input border radius (in rem):
-        <input
-          onChange={(e) =>
-            setInputOptions((prev) => {
-              return { ...prev, borderRadius: e.target.value + "rem" };
-            })
-          }
-          type="number"
-          name="inputBorderRadius"
-          id="inputBorderRadius"
-        />
-      </label>
-
-      <label
-        className="flex items-center justify-between"
-        htmlFor="accentColor"
-      >
-        Accent color:
-        <input
-          onChange={(e) =>
-            setInputOptions((prev) => {
-              return { ...prev, accentColor: e.target.value };
-            })
-          }
-          type="color"
-          name="accentColor"
-          id="accentColor"
-        />
-      </label>
+          return <BuildingBlock key={propsObj.id} {...propsObj} />;
+        })}
     </form>
   );
 }
