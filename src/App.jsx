@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-7xl text-orange-700 p-4 pb-36 text-center">
+      <h1 className="p-4 pb-36 text-center text-7xl text-orange-700">
         Form Builder
       </h1>
 
@@ -20,12 +20,12 @@ function App() {
           }
           return setFormFields(JSON.parse(e.target.value));
         }}
-        className="block mx-auto mb-20 max-w-lg w-full h-36 resize-none outline-none"
+        className="mx-auto mb-20 block h-36 w-full max-w-lg resize-none outline-none"
         name="jsonForm"
         id="jsonForm"
         value={JSON.stringify(formFields)}
       ></textarea>
-      <div className="grid grid-cols-2 items-center justify-center">
+      <div className="grid grid-cols-3 items-start justify-center">
         <InputBuild />
         <MainForm />
         <FormOptions />
