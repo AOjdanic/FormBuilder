@@ -7,7 +7,7 @@ function MainForm() {
 
   return (
     <form id="mainForm" style={formOptions}>
-      <h2>{formOptions.title || "Form Title"}</h2>
+      <h2>{formOptions.title}</h2>
       {formFields.map((field) => (
         <InputComponent key={field.id} props={field} />
       ))}

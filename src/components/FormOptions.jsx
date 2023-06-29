@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import FormContext from "../context/form-context";
-import BuildingBlock from "./BuildingBlock";
-import FontWeightBuildingBlock from "./FontWeightBuildingBlock";
-import PaddingBoxShadowBuildingBlock from "./PaddingBoxShadowBuildingBlock";
+import BuildingBlock from "./building blocks/BuildingBlock";
+import FontWeightBuildingBlock from "./building blocks/FontWeightBuildingBlock";
+import PaddingBoxShadowBuildingBlock from "./building blocks/PaddingBoxShadowBuildingBlock";
 
 function FormOptions() {
   const {
