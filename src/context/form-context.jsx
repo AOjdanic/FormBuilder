@@ -7,7 +7,7 @@ export const FormContextProvider = ({ children }) => {
   const [formFields, setFormFields] = useState([]);
   const [formOptions, setFormOptions] = useState({
     backgroundColor: "#0f172a",
-    color: "#c2410c",
+    color: "#7f1d1d",
     borderRadius: "1.5rem",
     maxWidth: "48rem",
     padding: "3rem 3rem 3rem 3rem",
@@ -32,7 +32,7 @@ export const FormContextProvider = ({ children }) => {
     padding: "0.5rem 1rem 0.5rem 1rem",
     fontSize: "1.5rem",
     borderRadius: "0.5rem",
-    accentColor: "#c2410c",
+    accentColor: "#7f1d1d",
   });
 
   const fields = {

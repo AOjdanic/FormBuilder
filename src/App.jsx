@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1 className="p-4 pb-36 text-center text-7xl text-orange-700">
+      <h1 className="p-4 pb-36 text-center text-7xl text-red-900">
         Form Builder
       </h1>
 

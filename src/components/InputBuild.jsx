@@ -58,7 +58,7 @@ function InputBuild() {
   return (
     <form
       onSubmit={createFormElement}
-      className=" mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-orange-700"
+      className=" mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-red-900"
     >
       <label className="flex items-center justify-between" htmlFor="type">
         For:
@@ -234,7 +234,7 @@ function InputBuild() {
             />
           </label>
         ))}
-      <button className="bg-orange-700 px-10 py-2 text-xl font-extrabold text-slate-900 ">
+      <button className="bg-red-900 px-10 py-2 text-xl font-extrabold text-slate-900 ">
         Create
       </button>
     </form>

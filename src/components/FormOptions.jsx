@@ -191,14 +191,14 @@ function FormOptions() {
   ];
 
   return (
-    <form className="mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-orange-700">
+    <form className="mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-red-900">
       <div className="flex justify-between">
         <button
           onClick={(e) => {
             e.preventDefault();
             return setShowFormOptions(!showFormOptions);
           }}
-          className="rounded-lg bg-orange-700 p-2 text-slate-900"
+          className="rounded-lg bg-red-900 p-2 text-slate-900"
         >
           {`${showFormOptions === true ? "Hide" : "Show"} form options`}
         </button>
@@ -207,7 +207,7 @@ function FormOptions() {
             e.preventDefault();
             return setShowInputOptions(!showInputOptions);
           }}
-          className="rounded-lg bg-orange-700 p-2 text-slate-900"
+          className="rounded-lg bg-red-900 p-2 text-slate-900"
         >
           {`${showInputOptions === true ? "Hide" : "Show"} input options`}
         </button>
