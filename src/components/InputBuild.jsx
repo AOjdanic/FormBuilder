@@ -1,10 +1,32 @@
 import { useContext, useState } from "react";
 import FormContext from "../context/form-context";
+import InputBuildBuildingBlock from "./building blocks/InputBuildBuildingBlock";
 
 function InputBuild() {
   const { setFormFields } = useContext(FormContext);
   const [selectValue, setSelectValue] = useState();
   const [boxNumber, setBoxNumber] = useState(0);
+  const options = [
+    "text",
+    "email",
+    "password",
+    "number",
+    "search",
+    "checkbox",
+    "radio",
+    "range",
+    "color",
+    "date",
+    "time",
+    "month",
+    "week",
+    "file",
+    "url",
+    "reset",
+    "submit",
+    "textarea",
+    "select",
+  ];
 
   let radioArr = new Array(boxNumber).fill(0);
 
@@ -13,17 +35,14 @@ function InputBuild() {
     const formElements = Array.from(e.target.elements).slice(0, -1);
     const propsObj = {};
 
-    console.log(formElements);
-
     if (
       selectValue === "checkbox" ||
       selectValue === "radio" ||
       selectValue === "select"
     ) {
       const nonRadios = formElements.filter((el) => !el.id.startsWith("radio"));
-      console.log(nonRadios);
+
       const radios = formElements.filter((el) => el.id.startsWith("radio"));
-      console.log(radios);
 
       let newObj = {};
 
@@ -37,7 +56,6 @@ function InputBuild() {
       newObj.radios = [];
       radios.forEach((el) => {
         newObj.radios.push(el.value);
-        console.log(newObj);
       });
       setFormFields((prev) => [...prev, newObj]);
       return;
@@ -51,7 +69,7 @@ function InputBuild() {
       }
       return (propsObj[el.id] = el.value);
     });
-    console.log(propsObj);
+
     setFormFields((prev) => [...prev, propsObj]);
   };
 
@@ -60,55 +78,37 @@ function InputBuild() {
       onSubmit={createFormElement}
       className=" mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-red-900"
     >
+      <p className="text-center text-3xl">Build form elements</p>
+      {/* select menu for input type */}
+
       <label className="flex items-center justify-between" htmlFor="type">
         For:
         <select
-          className="w-[212px]"
+          className="w-[212px] rounded-sm outline-none"
           value={selectValue}
           onChange={(e) => setSelectValue(e.target.value)}
           name="type"
           id="type"
         >
-          <option value="text">text</option>
-          <option value="email">email</option>
-          <option value="password">password</option>
-          <option value="number">number</option>
-          <option value="search">search</option>
-          <option value="checkbox">checkbox</option>
-          <option value="radio">radio</option>
-          <option value="range">range</option>
-          <option value="color">color</option>
-          <option value="date">date</option>
-          <option value="time">time</option>
-          <option value="month">month</option>
-          <option value="week">week</option>
-          <option value="file">file</option>
-          <option value="url">url</option>
-          <option value="reset">reset</option>
-          <option value="submit">submit</option>
-          <option value="textarea">textarea</option>
-          <option value="select">select</option>
+          {options.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
         </select>
       </label>
 
-      {selectValue !== "radio" && selectValue !== "checkbox" && (
-        <label className=" flex items-center justify-between" htmlFor="id">
-          Id:
-          <input required type="text" id="id" placeholder="enter id here" />
-        </label>
-      )}
+      {/* id field, neccessary for every input */}
+
+      <InputBuildBuildingBlock required id="id" />
+
+      {/* title of the input field */}
 
       {selectValue !== "reset" && selectValue !== "submit" && (
-        <label className=" flex items-center justify-between" htmlFor="label">
-          Title:
-          <input
-            required
-            type="text"
-            id="label"
-            placeholder="enter title here"
-          />
-        </label>
+        <InputBuildBuildingBlock required id="label" label="Title" />
       )}
+
+      {/* Creating placeholder for input element if needed */}
 
       {selectValue !== "select" &&
         selectValue !== "color" &&
@@ -117,67 +117,39 @@ function InputBuild() {
         selectValue !== "range" &&
         selectValue !== "file" &&
         selectValue !== "reset" &&
-        selectValue !== "submit" && (
-          <label
-            className=" flex items-center justify-between"
-            htmlFor="placeholder"
-          >
-            Placeholder:
-            <input
-              type="text"
-              id="placeholder"
-              placeholder="enter placeholder here"
-            />
-          </label>
-        )}
+        selectValue !== "submit" &&
+        selectValue !== "date" &&
+        selectValue !== "time" &&
+        selectValue !== "month" &&
+        selectValue !== "week" && <InputBuildBuildingBlock id="placeholder" />}
+
+      {/* Defining range values */}
 
       {selectValue === "range" && (
         <>
-          <label className=" flex items-center justify-between" htmlFor="min">
-            Minimum:
-            <input
-              required
-              type="number"
-              id="min"
-              placeholder="enter minimum value"
-            />
-          </label>
-          <label className=" flex items-center justify-between" htmlFor="max">
-            Maximum:
-            <input
-              required
-              type="number"
-              id="max"
-              placeholder="enter maximum value"
-            />
-          </label>
-
-          <label className=" flex items-center justify-between" htmlFor="step">
-            Step:
-            <input
-              required
-              type="number"
-              id="step"
-              placeholder="enter step value for slider"
-            />
-          </label>
+          <InputBuildBuildingBlock
+            required
+            id="min"
+            label="Minimum"
+            type="number"
+          />
+          <InputBuildBuildingBlock
+            required
+            id="max"
+            label="Maximum"
+            type="number"
+          />
+          <InputBuildBuildingBlock required id="step" type="number" />
         </>
       )}
 
+      {/* Question for checkboxes/radios */}
+
       {(selectValue === "radio" || selectValue === "checkbox") && (
-        <label
-          className=" flex items-center justify-between"
-          htmlFor="question"
-        >
-          Question:
-          <input
-            required
-            type="text"
-            id="question"
-            placeholder="enter question"
-          />
-        </label>
+        <InputBuildBuildingBlock required id="question" />
       )}
+
+      {/* creating additional radios,checkboxes and options as per need */}
 
       {(selectValue === "radio" ||
         selectValue === "checkbox" ||
@@ -188,6 +160,7 @@ function InputBuild() {
         >
           Number of fields:
           <input
+            className="rounded-sm outline-none"
             value={boxNumber}
             onChange={(e) => {
               if (Number(e.target.value) < 0) return;
@@ -196,10 +169,11 @@ function InputBuild() {
             required
             type="number"
             id="noOfBoxes"
-            placeholder="enter amount of options"
           />
         </label>
       )}
+
+      {/* checkbox for making element required or not */}
 
       {selectValue !== "reset" && selectValue !== "submit" && (
         <label
@@ -216,6 +190,8 @@ function InputBuild() {
         </label>
       )}
 
+      {/* options for radios, checkboxes and select */}
+
       {(selectValue === "radio" ||
         selectValue === "checkbox" ||
         selectValue === "select") &&
@@ -226,15 +202,13 @@ function InputBuild() {
             htmlFor={`radio${i}`}
           >
             Value {i + 1}:
-            <input
-              required
-              type="text"
-              id={`radio${i}`}
-              placeholder="enter field value here"
-            />
+            <input required type="text" id={`radio${i}`} />
           </label>
         ))}
-      <button className="bg-red-900 px-10 py-2 text-xl font-extrabold text-slate-900 ">
+
+      {/* create element button */}
+
+      <button className="rounded-sm bg-red-900 px-10 py-2 text-xl font-extrabold text-slate-900 ">
         Create
       </button>
     </form>

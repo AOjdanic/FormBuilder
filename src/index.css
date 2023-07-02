@@ -5,3 +5,14 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #f8fafc;
+  background: #7f1d1d;
+}
+
+::selection {
+  color: #f8fafc;
+  background: #7f1d1d;
+}

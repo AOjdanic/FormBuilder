@@ -7,6 +7,7 @@ function FontWeightBuildingBlock({ values, fn, name, label }) {
         <span key={value}>
           {value}
           <input
+            className="accent-red-900"
             onChange={(e) =>
               fn((prev) => {
                 return { ...prev, fontWeight: e.target.value };

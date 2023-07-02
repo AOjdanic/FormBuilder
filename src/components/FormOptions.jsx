@@ -12,8 +12,8 @@ function FormOptions() {
     setInputOptions,
   } = useContext(FormContext);
 
-  const [showFormOptions, setShowFormOptions] = useState(true);
-  const [showInputOptions, setShowInputOptions] = useState(true);
+  const [showFormOptions, setShowFormOptions] = useState(false);
+  const [showInputOptions, setShowInputOptions] = useState(false);
 
   const formOptionsProps = [
     {
@@ -198,7 +198,7 @@ function FormOptions() {
             e.preventDefault();
             return setShowFormOptions(!showFormOptions);
           }}
-          className="rounded-lg bg-red-900 p-2 text-slate-900"
+          className="w-[165px] rounded-sm bg-red-900 p-2 text-slate-900"
         >
           {`${showFormOptions === true ? "Hide" : "Show"} form options`}
         </button>
@@ -207,7 +207,7 @@ function FormOptions() {
             e.preventDefault();
             return setShowInputOptions(!showInputOptions);
           }}
-          className="rounded-lg bg-red-900 p-2 text-slate-900"
+          className="w-[165px] rounded-sm bg-red-900 p-2 text-slate-900"
         >
           {`${showInputOptions === true ? "Hide" : "Show"} input options`}
         </button>

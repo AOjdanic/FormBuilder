@@ -44,7 +44,6 @@ function InputComponent({
                 type={type}
                 id={el}
                 name={label}
-                {...required}
               />
             </label>
           ))}

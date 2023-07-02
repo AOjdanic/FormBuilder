@@ -4,6 +4,7 @@ function BuildingBlock({ id, fn, cssRule, units, type, label }) {
     <label className="flex items-center justify-between" htmlFor={id}>
       {label}:
       <input
+        className="rounded-sm outline-none"
         onChange={(e) =>
           fn((prev) => {
             const updatedCssRule = { [cssRule]: e.target.value + units };
