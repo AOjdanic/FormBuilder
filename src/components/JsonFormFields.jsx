@@ -1,9 +1,17 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import FormContext from "../context/form-context";
 
 function JsonFormFields() {
   const { formFields, setFormFields } = useContext(FormContext);
   const formJsonStringRef = useRef();
+  const formJsonRef = useRef();
+  const [formJsonValue, setFormJsonValue] = useState(
+    JSON.stringify(formFields)
+  );
+
+  useEffect(() => {
+    setFormJsonValue(JSON.stringify(formFields));
+  }, [formFields]);
 
   const parseStringIntoJson = (e) => {
     e.preventDefault();
@@ -27,7 +35,7 @@ function JsonFormFields() {
 
     const someArr3 = someArr2.map((arr) => JSON.parse(arr));
 
-    return setFormFields([...someArr3]);
+    return setFormFields((prev) => [...prev, ...someArr3]);
   };
 
   return (
@@ -48,7 +56,7 @@ function JsonFormFields() {
           onClick={parseStringIntoJson}
           className="mx-auto block w-full max-w-lg rounded-sm bg-red-900 p-2 font-bold text-slate-900"
         >
-          Apply
+          Create form elements (string structure)
         </button>
       </div>
       <label
@@ -57,12 +65,22 @@ function JsonFormFields() {
       >
         Form elements (JSON)
         <textarea
-          readOnly
+          ref={formJsonRef}
           className="h-64 w-full max-w-lg resize-none rounded-sm bg-slate-50 outline-none"
           id="jsonForm"
-          value={JSON.stringify(formFields)}
+          value={formJsonValue}
+          onChange={(e) => setFormJsonValue(e.target.value)}
         ></textarea>
-        <div className="mx-auto block w-full max-w-lg rounded-sm bg-red-900 p-5"></div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+
+            return setFormFields(JSON.parse(formJsonRef.current.value));
+          }}
+          className="mx-auto block w-full max-w-lg rounded-sm bg-red-900 p-2 text-base font-bold text-slate-900"
+        >
+          Create form elements (JSON structure)
+        </button>
       </label>
     </>
   );

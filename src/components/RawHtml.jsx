@@ -12,11 +12,13 @@ function RawHtml() {
         Get raw HTML and styles
       </p>
       <textarea
+        id="rawFormHTML"
         className="h-32 resize-none bg-slate-50 px-4 outline-none"
         readOnly
         value={`<form>${formHtml}</form>`}
       ></textarea>
       <textarea
+        id="FormStyles"
         className="h-32 border-t-2 bg-slate-50 px-4 outline-none"
         readOnly
         value={formStyles}

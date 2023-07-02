@@ -185,7 +185,7 @@ function InputBuild() {
             type="checkbox"
             name="required"
             id="required"
-            className="h-6 w-6 accent-orange-700"
+            className="h-6 w-6 accent-red-900"
           />
         </label>
       )}
