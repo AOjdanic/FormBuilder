@@ -1,8 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import FormContext from "../context/form-context";
-
+import { Info } from "@phosphor-icons/react";
+import ModalElement from "./ModalElement";
 function JsonFormFields() {
-  const { formFields, setFormFields } = useContext(FormContext);
+  const { formFields, setFormFields, setShowModal, showModal } =
+    useContext(FormContext);
   const formJsonStringRef = useRef();
   const formJsonRef = useRef();
   const [formJsonValue, setFormJsonValue] = useState(
@@ -34,18 +36,28 @@ function JsonFormFields() {
     const someArr2 = someArr.map((arr) => `{${arr.join(",")}}`);
 
     const someArr3 = someArr2.map((arr) => JSON.parse(arr));
-
+    console.log(someArr3);
     return setFormFields((prev) => [...prev, ...someArr3]);
   };
 
   return (
     <>
+      {showModal && <ModalElement />}
       <div>
         <label
           htmlFor="jsonFormEdit"
           className="mx-auto flex w-full max-w-lg flex-col text-center text-2xl text-red-900"
         >
-          Create form elements (string into JSON)
+          <span className="flex items-center justify-center gap-4">
+            Create form elements (string into JSON)
+            <Info
+              className="cursor-pointer"
+              size={28}
+              color="#f8fafc"
+              weight="bold"
+              onClick={() => setShowModal(true)}
+            />
+          </span>
           <textarea
             ref={formJsonStringRef}
             className="h-64 w-full max-w-lg resize-none rounded-sm bg-slate-50 outline-none"

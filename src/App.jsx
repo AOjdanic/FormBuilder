@@ -3,14 +3,13 @@ import MainForm from "./components/MainForm";
 import FormOptions from "./components/FormOptions";
 import JsonFormFields from "./components/JsonFormFields";
 import RawHtml from "./components/RawHtml";
+import MainHeading from "./components/MainHeading";
 
 function App() {
   return (
     <>
       <header>
-        <h1 className="p-4 pb-36 text-center text-7xl text-red-900">
-          Form Builder
-        </h1>
+        <MainHeading />
       </header>
       <main>
         <div className="mb-20 grid grid-cols-3 items-start justify-center gap-y-40">

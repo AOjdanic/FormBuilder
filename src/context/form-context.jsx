@@ -35,6 +35,8 @@ export const FormContextProvider = ({ children }) => {
     accentColor: "#7f1d1d",
   });
 
+  const [showModal, setShowModal] = useState(false);
+
   const fields = {
     formFields,
     setFormFields,
@@ -46,6 +48,8 @@ export const FormContextProvider = ({ children }) => {
     setLabelOptions,
     inputOptions,
     setInputOptions,
+    showModal,
+    setShowModal,
   };
 
   return <FormContext.Provider value={fields}>{children}</FormContext.Provider>;
