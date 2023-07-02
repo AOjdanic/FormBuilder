@@ -6,7 +6,7 @@ function MainForm() {
   const { formFields, formOptions } = useContext(FormContext);
 
   return (
-    <form id="mainForm" style={formOptions}>
+    <form className="mx-auto w-full" id="mainForm" style={formOptions}>
       <h2>{formOptions.title}</h2>
       {formFields.map((field) => (
         <InputComponent key={field.id} props={field} />

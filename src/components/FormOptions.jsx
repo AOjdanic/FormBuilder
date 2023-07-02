@@ -191,7 +191,7 @@ function FormOptions() {
   ];
 
   return (
-    <form className="mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-red-900">
+    <form className="container mx-auto flex flex-col gap-5 p-4 font-bold text-red-900 lg:w-96">
       <div className="flex justify-between">
         <button
           onClick={(e) => {

@@ -76,7 +76,7 @@ function InputBuild() {
   return (
     <form
       onSubmit={createFormElement}
-      className=" mx-auto flex w-96 flex-col gap-5 p-4 font-bold text-red-900"
+      className="container mx-auto flex flex-col gap-5 p-4 font-bold text-red-900 lg:w-96"
     >
       <p className="text-center text-3xl">Build form elements</p>
       {/* select menu for input type */}

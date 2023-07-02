@@ -12,7 +12,7 @@ function App() {
         <MainHeading />
       </header>
       <main>
-        <div className="mb-20 grid grid-cols-3 items-start justify-center gap-y-40">
+        <div className="mb-20 grid grid-cols-1 items-start justify-center gap-y-40 px-4 2xl:grid-cols-3">
           <InputBuild />
           <MainForm />
           <FormOptions />
